@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\T_Archive;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -24,7 +26,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        if(Gate::Authorize('create',User::class)){
+            return view('users.create');
+        }
+        
     }
 
     /**
@@ -46,11 +51,13 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $archives=T_Archive::where('user_id',$user->id)->get();
-        return view('users.show',[
-            'user'=>$user,
-            'archives'=>$archives
-        ]);
+        if(Gate::Authorize('view',$user)){
+            $archives=T_Archive::where('user_id',$user->id)->get();
+            return view('users.show',[
+                'user'=>$user,
+                'archives'=>$archives
+            ]);
+        }
     }
 
     /**

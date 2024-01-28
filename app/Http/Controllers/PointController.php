@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Models\Point;
 use App\Models\T_Archive;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PointController extends Controller
 {
@@ -23,11 +24,13 @@ class PointController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    { 
+        if(Gate::Authorize('create',Point::class)){
         $users=User::where('role','Manager')->get();
         return view ('points.create',[
             'managers'=>$users
         ]);
+    }
     }
 
     /**
@@ -50,6 +53,7 @@ class PointController extends Controller
      */
     public function show(Point $point)
     {
+        if(Gate::Authorize('view',$point)){
         $user=User::find($point->manager_id);
         $archives = T_Archive::where('sender_id', $point->id)
                     ->orWhere('receiver_id', $point->id)
@@ -60,17 +64,20 @@ class PointController extends Controller
             'manager'=>$user
         ]);
     }
+    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Point $point)
     {
+        if(Gate::Authorize('update',$point)){
         $users=User::where('role','Manager')->get();
         return view('points.update',[
             'point'=>$point,
             'managers'=>$users
         ]);
+    }
     }
 
     /**
@@ -92,7 +99,9 @@ class PointController extends Controller
      */
     public function destroy(Point $point)
     {
+        if(Gate::Authorize('delete',$point)){
         $point->delete();
         return to_route('points.index');
+    }
     }
 }

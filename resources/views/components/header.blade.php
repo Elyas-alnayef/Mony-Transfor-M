@@ -6,19 +6,22 @@
             <li class="nav-item"><a href="{{route('users.index')}}" class="nav-link">Users</a></li>
             <li class="nav-item"><a href="{{route('exchange')}}" class="nav-link">Exchange</a></li>
         </ul>
-        {{-- <ul class="nav nav-pills">
-          <li class="nav-item ml-auto   "><a href="#" class="nav-link">welcome</a></li>
-          <li class="nav-item ml-auto   "><a href="#" class="nav-link" 
-          onclick="event.preventDefault(); document.getElementById('logout').submit();"
-            >Logout</a></li>
-            <form  id="logout" action="#" method="post" style="display: none">
-            @csrf
-            </form>
-      </ul> --}}
-        <ul class="nav nav-pills">
-          <li class="nav-item ml-auto   "><a href="#" class="nav-link">Login</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Register</a></li>
-        </ul> 
+          @if (Auth::check())
+          <ul class="nav nav-pills">
+            <li class="nav-item ml-auto   "><a href="#" class="nav-link" 
+              onclick="event.preventDefault(); document.getElementById('logout').submit();"
+                >Logout</a></li>
+              <form  id="logout" action="{{route('logout')}}" method="post" style="display: none">
+              @csrf
+              </form>
+          </ul>
+          @else
+          <ul class="nav nav-pills">
+            <li class="nav-item ml-auto "><a href="{{route('login')}}" class="nav-link">Login</a></li>
+            <li class="nav-item"><a href="{{route('registerget')}}" class="nav-link">Register</a></li>
+          </ul>   
+          @endif
+       
        
     </header>
 </div>

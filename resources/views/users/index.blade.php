@@ -16,12 +16,14 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a href="{{route('users.show',$user)}}"class="btn btn-sm btn-outline-secondary">View</a>
+                  @can('update', $user)
                   <a href="{{route ('users.edit',$user) }}"class="btn btn-sm btn-outline-secondary">Edit</a>
                   <form action="{{route('users.destroy',$user)}}" method="post">
                     @method('DELETE')
                     @csrf
                   <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                   </form>
+                  @endcan
                 </div>
                 <small class="text-body-secondary">{{$user->created_at}}</small>
               </div>

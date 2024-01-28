@@ -30,13 +30,12 @@
                     <label for="password_confirmation">Confirm Password</label>
                     <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password">
                   </div>
-                  <label for="browser" class="form-label">Choose the user role</label>
-                  <input class="form-control" list="role" name="role" id="browser">
-                  <datalist id="role">
-                    <option value="Admin">
-                    <option value="Manager">
-                    <option value="User">
-                  </datalist>    
+                  <label for="role" class="form-label">Choose the user role</label>
+                 <select class="form-control" id="role" name="role">
+                    <option value="User">User</option>
+                    <option value="Admin">Admin</option>  
+                    <option value="Manager">Manager</option>  
+                </select>
                 <button type="submit" class="btn btn-primary">Sign Up</button>
               </form>
         </div>

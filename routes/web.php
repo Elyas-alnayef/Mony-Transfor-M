@@ -3,6 +3,8 @@ use App\Http\Controllers\PointController;
 use App\Http\Controllers\T_ArchiveController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AuthController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,15 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
 Route::get('/', [PointController::class,'index']
 )->name('home');
@@ -34,7 +28,24 @@ Route::get('/exchange', function(){
 })->name('exchange');
 route::resource('points',PointController::class);  
 route::resource('archive',T_ArchiveController::class);
-route::resource('users',UserController::class);  
+route::resource('users',UserController::class);
+
+
+Route::get('/register',function (){
+    return view('auth.register');
+})->name('registerget');
+
+Route::post('/registeruser', [AuthController::class,'registeruser'])->name('register');
+
+Route::post('/logout',[AuthController::class,'logout']
+)->name('logout');
+
+Route::get('/login',function (){
+    return view('auth.login');
+})->name('login');
+
+Route::post('/login_p', [AuthController::class,'login'])->name('login_p');
+
  
 
 

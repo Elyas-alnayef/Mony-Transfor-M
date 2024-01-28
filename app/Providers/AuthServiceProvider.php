@@ -2,7 +2,12 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use App\Models\Point;
+use App\Models\T_Archive;
+use App\Models\User;
+use App\Policies\PointPolicy;
+use App\Policies\T_ArchivePolicy;
+use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -13,7 +18,10 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        //
+        User::class=>UserPolicy::class,
+        Point::class=>PointPolicy::class,
+        T_Archive::class=>T_ArchivePolicy::class,
+
     ];
 
     /**
@@ -21,6 +29,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->registerPolicies();
     }
 }

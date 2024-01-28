@@ -7,6 +7,7 @@ use App\Models\User;
 
 use App\Models\T_Archive;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class T_ArchiveController extends Controller
 {
@@ -26,12 +27,15 @@ class T_ArchiveController extends Controller
      */
     public function create()
     {
-        $users=User::all();
-        $points=Point::all();
-        return view ('archive.create',[
-            'points'=>$points,
-            'users'=>$users
-        ]);
+        if(Gate::Authorize('create',T_Archive::class)){
+            $users=User::all();
+            $points=Point::all();
+            return view ('archive.create',[
+                'points'=>$points,
+                'users'=>$users
+            ]);
+        }
+       
     }
 
     /**
@@ -62,32 +66,35 @@ class T_ArchiveController extends Controller
             return 'cant do this ';
         }
     }
-
     /**
      * Display the specified resource.
      */
     public function show(int $t_archive_id)
     {
-        
         $t_archive=T_Archive::with(['t_point','user','receiver'])->find($t_archive_id);
-        return view('archive.show',[
-            'archive'=>$t_archive
-        ]);
+        if(Gate::Authorize('view',$t_archive)){
+            return view('archive.show',[
+                'archive'=>$t_archive
+            ]);
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(int $t_archive_id)
-    {
-        $users=User::all();
-        $points=Point::all();
+    {   
         $archive=T_Archive::with(['t_point','user','receiver'])->find($t_archive_id);
-        return view ('archive.update',[
-            'archive'=>$archive,
-            'points'=>$points,
-            'users'=>$users
-        ]);
+        if(Gate::Authorize('updat',$archive)){
+            $users=User::all();
+            $points=Point::all();
+            
+            return view ('archive.update',[
+                'archive'=>$archive,
+                'points'=>$points,
+                'users'=>$users
+            ]);
+        }
     }
 
     /**
@@ -112,7 +119,9 @@ class T_ArchiveController extends Controller
     public function destroy(int $t_archive_id)
     {
         $archive=T_Archive::find($t_archive_id);
-        $archive->update(['deleted'=>1]);
-        return to_route( 'archive.index');
+        if(Gate::Authorize('updat',$archive)){
+            $archive->update(['deleted'=>1]);
+            return to_route( 'archive.index');
+        }
     }
 }
