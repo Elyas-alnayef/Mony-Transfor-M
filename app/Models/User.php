@@ -46,5 +46,8 @@ class User extends Authenticatable
     public function t_archive(){
         return $this->hasMany(T_Archive::class);
     }
+    public function point(){
+        return $this->hasOne(point::class);
+    }
     
 }

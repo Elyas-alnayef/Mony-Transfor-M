@@ -18,6 +18,6 @@ class Point extends Model
         return $this->hasMany(User::class);
     }
     public function manager(){
-        return $this->hasOne(User::class,'manager_id');
+        return $this->belongsTo(User::class,'manager_id');
     }
 }
