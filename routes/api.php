@@ -3,6 +3,8 @@
 
 use App\Http\Controllers\Api\PointController;
 use App\Http\Controllers\Api\T_ArchiveController;
+use App\Http\Controllers\Api\UserController;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,9 +19,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+Route::middleware('auth:sanctum')->group(function() {
+
+
 // points
 Route::get('/points',[PointController::class,'index']);
 Route::get('/point/{id}',[PointController::class,'show']);
@@ -33,5 +36,22 @@ Route::post('/create_archive',[T_ArchiveController::class,'store']);
 Route::put('/archive/{id}',[T_ArchiveController::class,'update']);
 Route::delete('/archive/{id}',[T_ArchiveController::class,'destroy']);
 
+});
 
+
+
+
+// http://127.0.0.1/api/generate-token
+Route::get('/generate-token/{id}', function ($id) {
+    $user = User::find($id);
+    $user->update(['api_token'=>$user->createToken('token')->plainTextToken]);
+    return $user->api_token;
+});
+
+
+Route::get('/users',[UserController::class,'index']);
+Route::get('/user/{id}',[UserController ::class,'show']);
+Route::post('/create_user',[UserController::class,'store']);
+Route::put('/user/{id}',[UserController::class,'update']);
+Route::delete('/user/{id}',[UserController::class,'destroy']);
 

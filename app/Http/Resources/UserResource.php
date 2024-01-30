@@ -2,10 +2,11 @@
 
 namespace App\Http\Resources;
 
+
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UsertResource extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,6 +19,9 @@ class UsertResource extends JsonResource
             'id'=>$this->id,
             'name'=>$this->name,
             'email'=>$this->email,
+            'Archive'=>$this->whenLoaded('t_archive',function(){
+                return T_ArchiveResource::collection($this->t_archive);
+            }),
         ];
     }
 }

@@ -79,5 +79,6 @@ class T_ArchiveController extends Controller
     {
         $archive=T_Archive::find($id);
         $archive->update(['deleted'=>1]);
+        return response()->json(null, 204);
     }
 }

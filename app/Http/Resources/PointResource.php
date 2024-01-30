@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\UsertResource;
+use App\Http\Resources\UserResource;
 class PointResource extends JsonResource
 {
     /**
@@ -20,7 +20,7 @@ class PointResource extends JsonResource
         'country'=>$this->country,
         'address'=>$this->address,
         'current_balance'=>$this->current_balance,
-        'manger'=>new UsertResource($this->whenLoaded('manager')),
+        'manger'=>new UserResource($this->whenLoaded('manager')),
        ];
     }
 }
