@@ -1,10 +1,6 @@
 <x-app >
-    <x-slot name="header">
-      <x-header></x-header>
-    </x-slot>
+    <x-slot name="title">Archive Details</x-slot>
     <x-slot name="content"><div class="container mt-5">
-        <h2>Archive Data</h2>
-    
         <table class="table table-bordered">
             <thead>
                 <tr>

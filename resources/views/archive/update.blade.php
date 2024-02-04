@@ -1,5 +1,5 @@
 <x-app>
-    <x-slot name="header"><x-header></x-header></x-slot>
+    <x-slot name="title">Update Page</x-slot>
     <x-slot name="content">
         <div class="container mt-5">
             @if ($errors->any())
@@ -45,6 +45,7 @@
                                 <option value="{{$user->id}}" {{ $user->id == optional($archive->user)->id ? 'selected' : '' }}>{{$user->name}}</option>  
                     @endforeach
                  </select>
+                 <br>
                 <button type="submit" class="btn btn-primary">Save</button>
               </form>
         </div>

@@ -1,5 +1,5 @@
 <x-app>
-    <x-slot name="header"><x-header></x-header></x-slot>
+    <x-slot name="title">Login</x-slot>
     <x-slot name="content">
         <div class="container mt-5">
             @if ($errors->any())

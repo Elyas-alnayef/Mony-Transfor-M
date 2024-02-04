@@ -6,6 +6,7 @@ use App\Models\Point;
 use App\Models\T_Archive;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class T_ArchivePolicy
 {
@@ -21,20 +22,13 @@ class T_ArchivePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $authuser, T_Archive $tArchive): bool
+    public function view(User $authuser,int $tArchive_id): bool
     {
-        $sendpoint=$tArchive->sender_id;
-        $receivepoint=$tArchive->receiver_id;
-
-        if( $authuser->role== 'Admin'){
+        if($authuser->role == 'Admin' ){
             return true;
-        }elseif($sendpoint->manager_id==$authuser->id ){
-            return true ;
-        }elseif($receivepoint->manager_id==$authuser->id ){
-            return true ;
         }else{
-            return false;
-        }
+            return false ;
+        }   
     }
 
     /**
@@ -54,7 +48,8 @@ class T_ArchivePolicy
      */
     public function update(User $authuser, T_Archive $tArchive): bool
     {
-        if( $authuser->role== 'Admin' or $authuser->role== 'Manager'){
+        $point=Point::where('manager_id',$authuser->id);
+        if( $authuser->role== 'Admin' or $authuser->role== 'Manager' and $tArchive->sender_id==$point->first()->id){
             return true;
         }else{
             return false;

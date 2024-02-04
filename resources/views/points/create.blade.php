@@ -1,5 +1,5 @@
 <x-app>
-    <x-slot name="header"><x-header></x-header></x-slot>
+    <x-slot name="title">Create New Point</x-slot>
     <x-slot name="content">
         <div class="container mt-5">
             @if ($errors->any())
@@ -37,6 +37,7 @@
                     <option value="{{ $manager->id }}">{{$manager->name}}</option>  
                     @endforeach
                 </select>
+                <br>
                 <button type="submit" class="btn btn-primary">Create</button>
               </form>
         </div>

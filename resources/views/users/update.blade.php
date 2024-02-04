@@ -1,6 +1,6 @@
 
         <x-app>
-            <x-slot name="header"><x-header></x-header></x-slot>
+            <x-slot name="title">Upadte User Credentials</x-slot>
             <x-slot name="content">
                 <div class="container mt-5">
                     @if ($errors->any())
@@ -30,7 +30,8 @@
                             <option value="Manager"{{$user->role === 'Manager' ? 'selected' : '' }}>Manager</option>
                             <option value="User"{{$user->role === 'User' ? 'selected' : '' }}>User</option>
                         </select>
-                        <button type="submit" class="btn btn-primary">save</button>
+                        <br>
+                        <button type="submit" class="btn btn-primary">Save</button>
                       </form>
                 </div>
             </x-slot>

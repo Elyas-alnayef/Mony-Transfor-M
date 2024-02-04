@@ -1,40 +1,40 @@
-<x-app >
-    <x-slot name="header">
-      <x-header></x-header>
-    </x-slot>
-    <x-slot name="content">
-        @forelse ($users as $user)
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <h6>{{$user->name}}</h6>
-              <br>
-              <p class="card-text">{{$user->email}}</p>
-              <br>
-              <p class="card-text">{{$user->role}}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href="{{route('users.show',$user)}}"class="btn btn-sm btn-outline-secondary">View</a>
-                  @can('update', $user)
-                  <a href="{{route ('users.edit',$user) }}"class="btn btn-sm btn-outline-secondary">Edit</a>
-                  <form action="{{route('users.destroy',$user)}}" method="post">
-                    @method('DELETE')
-                    @csrf
-                  <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
-                  </form>
-                  @endcan
-                </div>
-                <small class="text-body-secondary">{{$user->created_at}}</small>
+<x-app>
+  <x-slot name="title">All Users</x-slot>
+  <x-slot name="content">
+    <a href="{{route('users.create')}}" class="card  shadow-xl mx-3  mt-n6 btn btn-outline-primary" style="width: 100%; margin-bottom: 24px;">Create New</a>
+      @forelse ($users as $user)
+          <div class="card card-body shadow-xl mx-3  mt-n6" style="width: 100%; margin-bottom: 24px; background-color: rgba(230, 227, 227, 0.377);  backdrop-filter: blur(10px);">
+              <div class="d-flex">
+                  <!-- Left side for user image -->
+                  <div class="col-md-4 d-flex justify-content-center align-items-center">
+                      <img src="{{asset('assets/media/man.png')}}" alt="User Image" class="img-fluid">
+                  </div>
+                  <!-- Right side for user details -->
+                  <div class="col-md-8">
+                      <div class="card-body">
+                          <h5 class="card-title">{{$user->name}}</h5>
+                          <div>
+                              <p><span style="font-weight: 600;margin-right:30px;">Email</span><span>{{$user->email}}</span></p>
+                              <p><span style="font-weight: 600;margin-right:30px;">Rule</span> <span>{{$user->role}}</span></p>
+                              <p><span style="font-weight: 600;margin-right:30px;">Created At</span> <span>{{$user->created_at->format('Y-M-D')}}</span></p>
+                          </div>
+                          <div class="btn-group">
+                              <a href="{{route('users.show',$user)}}" class="btn btn-sm btn-outline-secondary">View</a>
+                              @can('update', $user)
+                              <a href="{{route ('users.edit',$user) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                              <form action="{{route('users.destroy',$user)}}" method="post">
+                                  @method('DELETE')
+                                  @csrf
+                                  <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                              </form>
+                              @endcan
+                          </div>
+                      </div>
+                  </div>
               </div>
-            </div>
           </div>
-        </div>
-        <br>
-        @empty
-            
-        @endforelse
-        <a href="{{route('users.create')}}"  rel="noopener noreferrer">create new user</a>
-
-    </x-slot>
+      @empty
+      @endforelse
+      <a href="{{route('users.create')}}" rel="noopener noreferrer">Create new user</a>
+  </x-slot>
 </x-app>

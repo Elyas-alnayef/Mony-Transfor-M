@@ -4,7 +4,7 @@ use App\Http\Controllers\T_ArchiveController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,11 +18,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
-
-Route::get('/', [PointController::class,'index']
-)->name('home');
 Route::get('/exchange', function(){
     return view ('exchange');
 })->name('exchange');
@@ -47,9 +42,6 @@ Route::get('/login',function (){
 Route::post('/login_p', [AuthController::class,'login'])->name('login_p');
 
  
-
-
-
-
-
+Route::get('/', [HomeController::class,'index']
+)->name('home');
 

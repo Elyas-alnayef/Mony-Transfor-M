@@ -1,172 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/framework.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/main-css.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Document</title>
+    <!-- Open Sans -google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet" />
+    <!-- End Google fonts -->
     
-    <style>
-        .bd-placeholder-img {
-          font-size: 1.125rem;
-          text-anchor: middle;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          user-select: none;
-        }
-  
-        @media (min-width: 768px) {
-          .bd-placeholder-img-lg {
-            font-size: 3.5rem;
-          }
-        }
-  
-        .b-example-divider {
-          width: 100%;
-          height: 3rem;
-          background-color: rgba(0, 0, 0, .1);
-          border: solid rgba(0, 0, 0, .15);
-          border-width: 1px 0;
-          box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-        }
-  
-        .b-example-vr {
-          flex-shrink: 0;
-          width: 1.5rem;
-          height: 100vh;
-        }
-  
-        .bi {
-          vertical-align: -.125em;
-          fill: currentColor;
-        }
-  
-        .nav-scroller {
-          position: relative;
-          z-index: 2;
-          height: 2.75rem;
-          overflow-y: hidden;
-        }
-  
-        .nav-scroller .nav {
-          display: flex;
-          flex-wrap: nowrap;
-          padding-bottom: 1rem;
-          margin-top: -1px;
-          overflow-x: auto;
-          text-align: center;
-          white-space: nowrap;
-          -webkit-overflow-scrolling: touch;
-        }
-  
-        .btn-bd-primary {
-          --bd-violet-bg: #712cf9;
-          --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-  
-          --bs-btn-font-weight: 600;
-          --bs-btn-color: var(--bs-white);
-          --bs-btn-bg: var(--bd-violet-bg);
-          --bs-btn-border-color: var(--bd-violet-bg);
-          --bs-btn-hover-color: var(--bs-white);
-          --bs-btn-hover-bg: #6528e0;
-          --bs-btn-hover-border-color: #6528e0;
-          --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-          --bs-btn-active-color: var(--bs-btn-hover-color);
-          --bs-btn-active-bg: #5a23c8;
-          --bs-btn-active-border-color: #5a23c8;
-        }
-  
-        .bd-mode-toggle {
-          z-index: 1500;
-        }
-  
-        .bd-mode-toggle .dropdown-menu .active .bi {
-          display: block !important;
-        }
-        .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .b-example-divider {
-        width: 100%;
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
-
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
-
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .btn-bd-primary {
-        --bd-violet-bg: #712cf9;
-        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-        --bs-btn-font-weight: 600;
-        --bs-btn-color: var(--bs-white);
-        --bs-btn-bg: var(--bd-violet-bg);
-        --bs-btn-border-color: var(--bd-violet-bg);
-        --bs-btn-hover-color: var(--bs-white);
-        --bs-btn-hover-bg: #6528e0;
-        --bs-btn-hover-border-color: #6528e0;
-        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-        --bs-btn-active-color: var(--bs-btn-hover-color);
-        --bs-btn-active-bg: #5a23c8;
-        --bs-btn-active-border-color: #5a23c8;
-      }
-
-      .bd-mode-toggle {
-        z-index: 1500;
-      }
-
-      .bd-mode-toggle .dropdown-menu .active .bi {
-        display: block !important;
-      }
-      </style>
-  
 </head>
+
 <body>
-  {{$header}}
-  {{$content}}
-  
-<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-</body>
+
+  <div class="page d-flex">
+      <!-- sidebar -->
+      <div class="sidebar p-relative bg-white p-20">
+          <h3 class="p-relative mt-0 text-c">EMS</h3>
+          <ul class="text-cap">
+            @if (Auth::check())
+              <li>
+                  <a href="{{route('home')}}" class="active d-flex align-center fs-14 rad-6 p-10 c-black">
+                      <i class="fa-solid fa-chart-bar fa-fw"></i>
+                      <span>Home</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="{{route('points.index')}}" class="d-flex align-center fs-14 rad-6 p-10 c-black">
+                      <i class="fa-solid fa-gear fa-fw"></i>
+                      <span>Points</span>
+                  </a>
+              </li>
+
+              <li>
+                  <a href="{{route('users.show',Auth::user()->id)}}" class="d-flex align-center fs-14 rad-6 p-10 c-black">
+                      <i class="fa-regular fa-user fa-fw"></i>
+                      <span>Profile</span>
+                  </a>
+              </li>
+
+              <li>
+                  <a href="{{route('archive.index')}}" class="d-flex align-center fs-14 rad-6 p-10 c-black">
+                      <i class="fa-solid fa-diagram-project fa-fw"></i>
+                      <span>Archives</span>
+                  </a>
+              </li>
+              <li>
+                <a href="{{route('users.index')}}" class="d-flex align-center fs-14 rad-6 p-10 c-black">
+                    <i class="fa-solid fa-diagram-project fa-fw"></i>
+                    <span>Users</span>
+                </a>
+            </li>
+              @endif
+              <li>
+                  <a href="{{route('exchange')}}" class="d-flex align-center fs-14 rad-6 p-10 c-black">
+                      <i class="fa-solid fa-graduation-cap fa-fw"></i>
+                      <span>Currncy Exchange</span>
+                  </a>
+              </li>
+          </ul>
+      </div>
+      <!-- Start Head -->
+      <div class="content bg-eee">
+      <div class="head between-flex bg-white p-10">
+          <div class="search p-relative">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="search" class="rad-6" placeholder=" type a keyword" />
+          </div>
+        </ul>
+        @if (Auth::check())
+        <ul class="nav nav-pills">
+          <li class="nav-item ml-auto   "><a href="#" class="nav-link btn btn-danger" 
+            onclick="event.preventDefault(); document.getElementById('logout').submit();"
+              >Logout</a></li>
+            <form  id="logout" action="{{route('logout')}}" method="post" style="display: none">
+            @csrf
+            </form>
+        </ul>
+        @else
+        <ul class="nav nav-pills">
+          <li class="nav-item ml-auto"><a href="{{route('login')}}" class="nav-link btn btn-primary">Login</a></li>
+          <li class="nav-item ml-auto"><div style="width: 16px"></div></li>
+          <li class="nav-item"><a href="{{route('registerget')}}" class="nav-link btn btn-primary">Register</a></li>
+        </ul>   
+        @endif
+      </div>
+      <!-- End Head -->
+      <h1 class="p-relative">{{$title}}</h1> 
+      <div class=" mx-4" style="padding-right:24px;">
+        <!-- Start Wrapper -->
+          {{$content}}
+        </div>
+      <!-- End Wrapper -->
+
+    </body>
 </html>

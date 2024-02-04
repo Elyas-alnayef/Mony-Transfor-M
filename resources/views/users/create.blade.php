@@ -1,5 +1,5 @@
 <x-app>
-    <x-slot name="header"><x-header></x-header></x-slot>
+    <x-slot name="title">Create New User</x-slot>
     <x-slot name="content">
         <div class="container mt-5">
             @if ($errors->any())
@@ -36,7 +36,8 @@
                     <option value="Admin">Admin</option>  
                     <option value="Manager">Manager</option>  
                 </select>
-                <button type="submit" class="btn btn-primary">Sign Up</button>
+                <br>
+                <button type="submit" class="btn btn-primary">Create</button>
               </form>
         </div>
     </x-slot>

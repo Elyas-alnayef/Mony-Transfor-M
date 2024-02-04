@@ -1,8 +1,5 @@
 <x-app>
-    <x-slot name="header">
-        <x-header></x-header>
-    </x-slot>
-
+    <x-slot name="title">Currency Exchange</x-slot>
     <x-slot name="content">
         <div class="container mt-5">
             <h2 class="mb-4">Currency Exchange Rates</h2>

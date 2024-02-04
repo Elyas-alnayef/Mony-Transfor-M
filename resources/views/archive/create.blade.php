@@ -1,5 +1,5 @@
 <x-app>
-    <x-slot name="header"><x-header></x-header></x-slot>
+    <x-slot name="title">New Transfer</x-slot>
     <x-slot name="content">
         <div class="container mt-5">
             @if ($errors->any())
@@ -44,6 +44,7 @@
                                 <option value="{{$user->id}}">{{$user->name}}</option>  
                     @endforeach
                  </select>
+                 <br>
                 <button type="submit" class="btn btn-primary">Create</button>
               </form>
         </div>

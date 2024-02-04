@@ -72,11 +72,9 @@ class T_ArchiveController extends Controller
     public function show(int $t_archive_id)
     {
         $t_archive=T_Archive::with(['t_point','user','receiver'])->find($t_archive_id);
-        if(Gate::Authorize('view',$t_archive)){
-            return view('archive.show',[
+        return view('archive.show',[
                 'archive'=>$t_archive
             ]);
-        }
     }
 
     /**
@@ -85,7 +83,7 @@ class T_ArchiveController extends Controller
     public function edit(int $t_archive_id)
     {   
         $archive=T_Archive::with(['t_point','user','receiver'])->find($t_archive_id);
-        if(Gate::Authorize('updat',$archive)){
+        if(Gate::Authorize('update',$archive)){
             $users=User::all();
             $points=Point::all();
             
@@ -119,7 +117,7 @@ class T_ArchiveController extends Controller
     public function destroy(int $t_archive_id)
     {
         $archive=T_Archive::find($t_archive_id);
-        if(Gate::Authorize('updat',$archive)){
+        if(Gate::Authorize('delete',$archive)){
             $archive->update(['deleted'=>1]);
             return to_route( 'archive.index');
         }
