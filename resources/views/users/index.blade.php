@@ -15,7 +15,7 @@
                           <h5 class="card-title">{{$user->name}}</h5>
                           <div>
                               <p><span style="font-weight: 600;margin-right:30px;">Email</span><span>{{$user->email}}</span></p>
-                              <p><span style="font-weight: 600;margin-right:30px;">Rule</span> <span>{{$user->role}}</span></p>
+                              <p><span style="font-weight: 600;margin-right:30px;">Role</span> <span>{{$user->role}}</span></p>
                               <p><span style="font-weight: 600;margin-right:30px;">Created At</span> <span>{{$user->created_at->format('Y-M-D')}}</span></p>
                           </div>
                           <div class="btn-group">

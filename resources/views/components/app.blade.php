@@ -54,19 +54,19 @@
                     </li>
                     <li>
                       <a href="{{route('points.index')}}" class="d-flex align-center fs-14 rad-6 p-10 c-black">
-                          <i class="fa-solid fa-gear fa-fw"></i>
+                        <i class="fa-solid fa-building-columns"></i>
                           <span>Points</span>
                       </a>
                     </li>
                     <li>
                         <a href="{{route('archive.index')}}" class="d-flex align-center fs-14 rad-6 p-10 c-black">
-                            <i class="fa-solid fa-diagram-project fa-fw"></i>
+                            <i class="fa-regular fa-folder-closed"></i>
                             <span>Archives</span>
                         </a>
                     </li>
                     <li>
                       <a href="{{route('users.index')}}" class="d-flex align-center fs-14 rad-6 p-10 c-black">
-                          <i class="fa-solid fa-diagram-project fa-fw"></i>
+                        <i class="fa-solid fa-users"></i>
                           <span>Users</span>
                       </a>
                   </li>
@@ -74,7 +74,7 @@
               @endif
               <li>
                   <a href="{{route('exchange')}}" class="d-flex align-center fs-14 rad-6 p-10 c-black">
-                      <i class="fa-solid fa-graduation-cap fa-fw"></i>
+                    <i class="fa-solid fa-dollar-sign"></i>
                       <span>Currncy Exchange</span>
                   </a>
               </li>
