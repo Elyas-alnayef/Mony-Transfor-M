@@ -26,7 +26,7 @@
       <div class="sidebar p-relative bg-white p-20">
           <h3 class="p-relative mt-0 text-c">EMS</h3>
           <ul class="text-cap">
-            @if (Auth::check())
+            @if (Auth::check() and Auth::user()->role=='User')
               <li>
                   <a href="{{route('home')}}" class="active d-flex align-center fs-14 rad-6 p-10 c-black">
                       <i class="fa-solid fa-chart-bar fa-fw"></i>
@@ -34,31 +34,43 @@
                   </a>
               </li>
               <li>
-                  <a href="{{route('points.index')}}" class="d-flex align-center fs-14 rad-6 p-10 c-black">
-                      <i class="fa-solid fa-gear fa-fw"></i>
-                      <span>Points</span>
-                  </a>
-              </li>
-
-              <li>
                   <a href="{{route('users.show',Auth::user()->id)}}" class="d-flex align-center fs-14 rad-6 p-10 c-black">
                       <i class="fa-regular fa-user fa-fw"></i>
                       <span>Profile</span>
                   </a>
               </li>
-
-              <li>
-                  <a href="{{route('archive.index')}}" class="d-flex align-center fs-14 rad-6 p-10 c-black">
-                      <i class="fa-solid fa-diagram-project fa-fw"></i>
-                      <span>Archives</span>
-                  </a>
-              </li>
-              <li>
-                <a href="{{route('users.index')}}" class="d-flex align-center fs-14 rad-6 p-10 c-black">
-                    <i class="fa-solid fa-diagram-project fa-fw"></i>
-                    <span>Users</span>
-                </a>
-            </li>
+              @elseif (Auth::check() and (Auth::user()->role=='Admin' or Auth::user()->role=='Manager'))
+                      <li>
+                        <a href="{{route('home')}}" class="active d-flex align-center fs-14 rad-6 p-10 c-black">
+                            <i class="fa-solid fa-chart-bar fa-fw"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('users.show',Auth::user()->id)}}" class="d-flex align-center fs-14 rad-6 p-10 c-black">
+                            <i class="fa-regular fa-user fa-fw"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                      <a href="{{route('points.index')}}" class="d-flex align-center fs-14 rad-6 p-10 c-black">
+                          <i class="fa-solid fa-gear fa-fw"></i>
+                          <span>Points</span>
+                      </a>
+                    </li>
+                    <li>
+                        <a href="{{route('archive.index')}}" class="d-flex align-center fs-14 rad-6 p-10 c-black">
+                            <i class="fa-solid fa-diagram-project fa-fw"></i>
+                            <span>Archives</span>
+                        </a>
+                    </li>
+                    <li>
+                      <a href="{{route('users.index')}}" class="d-flex align-center fs-14 rad-6 p-10 c-black">
+                          <i class="fa-solid fa-diagram-project fa-fw"></i>
+                          <span>Users</span>
+                      </a>
+                  </li>
+              @else
               @endif
               <li>
                   <a href="{{route('exchange')}}" class="d-flex align-center fs-14 rad-6 p-10 c-black">

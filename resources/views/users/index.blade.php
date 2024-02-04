@@ -35,6 +35,5 @@
           </div>
       @empty
       @endforelse
-      <a href="{{route('users.create')}}" rel="noopener noreferrer">Create new user</a>
   </x-slot>
 </x-app>
