@@ -1,0 +1,2 @@
+admin:test.example.com
+pass:123456789
